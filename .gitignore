@@ -1,0 +1,6 @@
+java/*/.idea
+java/*/*.iml
+java/*/out
+java/*/.gradle
+java/*/build/
+*/*/.exercism
