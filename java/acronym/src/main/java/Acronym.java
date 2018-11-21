@@ -1,4 +1,6 @@
-import java.util.Arrays;
+import java.util.regex.Pattern;
+
+import static java.util.stream.Collectors.joining;
 
 class Acronym {
     private final String phrase;
@@ -8,12 +10,20 @@ class Acronym {
     }
 
     String getAcronym() {
-        return Arrays.stream(phrase.split("[\\s\\-]"))
-                .filter(s -> s.length() > 0)
-                .map(s -> s.substring(0,1))
+        return Pattern.compile("[\\s\\-]")
+                .splitAsStream(phrase)
+                .filter(this::notEmptyString)
+                .map(this::firstLetter)
                 .map(String::toUpperCase)
-                .reduce((acc, str) -> acc + str)
-                .orElse("");
+                .collect(joining());
+    }
+
+    private String firstLetter(String s) {
+        return s.substring(0, 1);
+    }
+
+    private boolean notEmptyString(String s) {
+        return s.length() > 0;
     }
 
 }
