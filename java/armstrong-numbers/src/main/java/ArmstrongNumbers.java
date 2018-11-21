@@ -4,9 +4,7 @@ class ArmstrongNumbers {
         int length = String.valueOf(numberToCheck).length();
         return String.valueOf(numberToCheck)
                 .chars()
-                .mapToObj(c -> (char) c)
-                .map(String::valueOf)
-                .map(Integer::parseInt)
+                .map(Character::getNumericValue)
                 .reduce(0, (acc, i) -> acc + (int) Math.pow(i, length)) == numberToCheck;
     }
 }
