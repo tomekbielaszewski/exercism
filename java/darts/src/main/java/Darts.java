@@ -4,10 +4,10 @@ import java.util.function.Predicate;
 
 class Darts {
     private final Map<Predicate<Double>, Integer> SCORE_RULES = new HashMap<Predicate<Double>, Integer>() {{
-        put((l) -> l > 10, 0);
-        put((l) -> l <= 10 && l > 5, 1);
-        put((l) -> l <= 5 && l > 1, 5);
-        put((l) -> l <= 1, 10);
+        put((distance) -> distance > 10, 0);
+        put((distance) -> distance <= 10 && distance > 5, 1);
+        put((distance) -> distance <= 5 && distance > 1, 5);
+        put((distance) -> distance <= 1, 10);
     }};
     private final Integer score;
 
