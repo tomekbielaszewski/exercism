@@ -1,18 +1,17 @@
 class DnDCharacter {
-    private int strength;
-    private int dexterity;
-    private int constitution;
-    private int intelligence;
-    private int wisdom;
-    private int charisma;
-    private int hitpoints;
+    private int strength = 3;
+    private int dexterity = 3;
+    private int constitution = 3;
+    private int intelligence = 3;
+    private int wisdom = 3;
+    private int charisma = 3;
 
     int ability() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return 3;
     }
 
     int modifier(int input) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return Math.floorDiv(input - 10, 2);
     }
 
     int getStrength() {
@@ -40,6 +39,6 @@ class DnDCharacter {
     }
 
     int getHitpoints() {
-        return hitpoints;
+        return 10 + modifier(this.constitution);
     }
 }
