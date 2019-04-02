@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 class Hamming {
     private final char[] leftStrand;
     private final char[] rightStrand;
@@ -17,11 +19,9 @@ class Hamming {
     }
 
     int getHammingDistance() {
-        int distance = 0;
-        for (int i = 0; i < leftStrand.length; i++) {
-            distance += leftStrand[i] == rightStrand[i] ? 0 : 1;
-        }
-        return distance;
+        return IntStream.range(0, leftStrand.length)
+                .map(index -> leftStrand[index] == rightStrand[index] ? 0 : 1)
+                .sum();
     }
 
 }
