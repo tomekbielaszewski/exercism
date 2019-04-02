@@ -7,7 +7,7 @@ class ResistorColor {
         return Optional.ofNullable(color)
                 .map(String::toUpperCase)
                 .map(ColorValue::valueOf)
-                .map(ColorValue::getValue)
+                .map(Enum::ordinal)
                 .orElseThrow(() -> new IllegalArgumentException("Unsupported color provided: " + color));
     }
 
@@ -20,25 +20,15 @@ class ResistorColor {
     }
 
     private enum ColorValue {
-        BLACK(0),
-        BROWN(1),
-        RED(2),
-        ORANGE(3),
-        YELLOW(4),
-        GREEN(5),
-        BLUE(6),
-        VIOLET(7),
-        GREY(8),
-        WHITE(9);
-
-        final int value;
-
-        ColorValue(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
+        BLACK,
+        BROWN,
+        RED,
+        ORANGE,
+        YELLOW,
+        GREEN,
+        BLUE,
+        VIOLET,
+        GREY,
+        WHITE
     }
 }
