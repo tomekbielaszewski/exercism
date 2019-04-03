@@ -7,8 +7,8 @@ class NaturalNumber {
 
     public NaturalNumber(int number) {
         this.number = Optional.ofNullable(number)
-        .filter(i -> i > 0)
-        .orElseThrow(() -> new IllegalArgumentException("You must supply a natural number (positive integer)"));
+                .filter(i -> i > 0)
+                .orElseThrow(() -> new IllegalArgumentException("You must supply a natural number (positive integer)"));
     }
 
     public Classification getClassification() {
