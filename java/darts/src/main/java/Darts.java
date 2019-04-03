@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.DoubleStream;
 
 class Darts {
     private final Map<Predicate<Double>, Integer> SCORE_RULES = new HashMap<Predicate<Double>, Integer>() {{
@@ -9,11 +10,13 @@ class Darts {
         put((distance) -> distance <= 5 && distance > 1, 5);
         put((distance) -> distance <= 1, 10);
     }};
-    private final Integer score;
+    private final int score;
 
     Darts(double x, double y) {
-        double distance = calculateDistanceFromCenter(x, y);
-        this.score = calculateScore(distance);
+        this.score = DoubleStream.of(calculateDistanceFromCenter(x, y))
+                .mapToInt(this::calculateScore)
+                .findFirst()
+                .getAsInt();
     }
 
     int score() {
@@ -21,7 +24,7 @@ class Darts {
     }
 
     private double calculateDistanceFromCenter(double x, double y) {
-        return Math.sqrt(x*x + y*y);
+        return Math.sqrt(x * x + y * y);
     }
 
     private Integer calculateScore(double distance) {
