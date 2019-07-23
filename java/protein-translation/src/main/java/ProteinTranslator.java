@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 class ProteinTranslator {
@@ -20,7 +21,7 @@ class ProteinTranslator {
                 .collect(Collectors.toList());
         List<String> output = new ArrayList<>();
         for (String protein : proteins) {
-            if("STOP".equals(protein)) break;
+            if ("STOP".equals(protein)) break;
             output.add(protein);
         }
         return output;
