@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class SumOfMultiples {
@@ -13,20 +11,14 @@ class SumOfMultiples {
     }
 
     int getSum() {
-        return Arrays.stream(set)
-                .filter(this::nonZero)
-                .mapToObj(divider -> IntStream.range(0, number)
-                        .filter(i -> i % divider == 0)
-                        .boxed()
-                )
-                .flatMap(Function.identity())
-                .collect(Collectors.toSet())
-                .stream()
-                .reduce(0, Integer::sum);
+        return IntStream.range(1, number)
+                .filter(i -> Arrays.stream(set)
+                        .filter(this::nonZero)
+                        .anyMatch(factor -> i % factor == 0))
+                .sum();
     }
 
     private boolean nonZero(int i) {
         return i != 0;
     }
-
 }
