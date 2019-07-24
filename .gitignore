@@ -5,3 +5,6 @@ java/*/.gradle
 java/*/gradle*
 java/*/build/
 */*/.exercism
+
+go/*/.idea
+go/*/*.iml
